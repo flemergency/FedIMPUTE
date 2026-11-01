@@ -1,9 +1,45 @@
-# FedIMPUTE
+# FedIMPUTE: Privacy-Preserving Missing Value Imputation for Multi-site Heterogeneous Electronic Health Records
 
-### R package for paper [FedIMPUTE: Privacy-Preserving Missing Value Imputation for Multi-site Heterogeneous Electronic Health Records](https://doi.org/10.1016/j.jbi.2025.104780).
+[![Paper](https://img.shields.io/badge/Paper-JBI_2025-orange.svg)](https://doi.org/10.1016/j.jbi.2025.104780)
+[![FedScore Shiny app](https://img.shields.io/badge/Shiny_app-FedScore-brightgreen.svg)](https://github.com/siqili0325/FedScore-ShinyApp)
+[![Language](https://img.shields.io/badge/Language-R-blue.svg)](https://www.r-project.org/)
 
-<p align="left">
-  <img height="420" src="Workflow.jpg">
+This repository contains the official R implementation for **FedIMPUTE**, a communication-efficient federated learning (FL) approach for privacy-preserving missing value imputation (MVI) in multi-site, heterogeneous electronic health records (EHRs).
+
+<p align="center">
+  <img src="Workflow.jpg" alt="FedIMPUTE workflow" height="420">
 </p>
 
-We propose FedIMPUTE, a communication-efficient federated learning (FL) based approach for missing value imputation (MVI). Our method enables multiple sites to collaboratively perform MVI in a privacy-preserving manner, addressing challenges of data-sharing constraints and population heterogeneity. We begin by conducting MVI locally at each participating site, followed by the application of various FL strategies, ranging from basic to advanced, to federate local MVI models without sharing site-specific data. The federated model is then broadcast and used by each site for MVI. We evaluate FedIMPUTE using both simulation studies and a real-world application on electronic health records (EHRs) to predict emergency department (ED) outcomes as a proof of concept. Simulation studies show that FedIMPUTE outperforms all baseline MVI methods under comparison, improving downstream prediction performance and effectively handling data heterogeneity across sites. By using ED datasets from three hospitals within the Duke University Health System (DUHS), FedIMPUTE achieves the lowest mean squared error (MSE) among benchmark MVI methods, indicating superior imputation accuracy. Additionally, FedIMPUTE provides good downstream prediction performance, outperforming or matching other benchmark methods. FedIMPUTE enhances the performance of downstream risk prediction tasks, particularly for sites with high missing data rates and small sample sizes. It is easy to implement and communication-efficient, requiring sites to share only non-patient-level summary statistics.
+> **🔗 Interactive application.** FedIMPUTE is available as the optional federated missing-value imputation step in the [**FedScore Shiny app**](https://github.com/siqili0325/FedScore-ShinyApp) — a point-and-click tool for building interpretable, [AutoScore](https://github.com/nliulab/AutoScore)-style clinical risk scores across sites that exchange only summary statistics. The app includes a demo that begins from this imputation step.
+
+---
+
+## 📌 Overview
+
+Missing data is pervasive in electronic health records, yet imputing it across hospitals raises two challenges:
+1. **Data-sharing constraints:** patient-level records cannot leave each site, so imputation models must be trained without pooling data.
+2. **Population heterogeneity:** case mix, missingness rates, and sample sizes differ across sites, so a single shared imputation model can degrade downstream prediction.
+
+**FedIMPUTE** addresses both. It first performs missing value imputation locally at each site, then federates the local imputation models through a range of FL strategies—from basic to advanced—without sharing site-specific data. The federated models are broadcast back to each site for final imputation. Across simulation studies and a real-world application to emergency department (ED) outcomes using EHRs from three hospitals in the Duke University Health System (DUHS), FedIMPUTE achieved the lowest mean squared error (MSE) among benchmark MVI methods and improved—or matched—downstream risk-prediction performance, with the largest gains at sites that have high missingness and small sample sizes.
+
+---
+
+## ✍️ Citation
+
+If you find FedIMPUTE useful for your research, please cite:
+
+```bibtex
+@article{li2025fedimpute,
+  title   = {FedIMPUTE: Privacy-preserving missing value imputation for multi-site heterogeneous electronic health records},
+  author  = {Li, Siqi and others},
+  journal = {Journal of Biomedical Informatics},
+  year    = {2025},
+  doi     = {10.1016/j.jbi.2025.104780}
+}
+```
+
+---
+
+## 👥 Contact
+
+* **Siqi Li** <siqili@u.duke.nus.edu>
